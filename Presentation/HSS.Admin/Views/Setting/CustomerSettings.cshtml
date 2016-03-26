@@ -1,0 +1,86 @@
+﻿@model CustomerSettingsModel
+@{
+    //page title
+    ViewBag.Title = T("Admin.Configuration.Settings.Customer").Text;
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="section-header">
+        <div class="title">
+            <img src="@Url.Content("~/Administration/Content/images/ico-configuration.png")" alt="" />
+            @T("Admin.Configuration.Settings.Customer")
+        </div>
+        <div class="options">
+            <input type="submit" name="save" class="k-button" value="@T("Admin.Common.Save")" />
+        </div>
+    </div>
+
+    @Html.ValidationSummary(false)
+
+    <table class="adminContent">
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.AccessPathEnabled):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.AccessPathEnabled)
+                @Html.ValidationMessageFor(model => model.AccessPathEnabled)
+            </td>
+        </tr>
+        <tr id="pnlAllowUsersToChangeUsernames">
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.AllowUsersToChangeUsernames):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.AllowUsersToChangeUsernames)
+                @Html.ValidationMessageFor(model => model.AllowUsersToChangeUsernames)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.DefaultPasswordFormat):
+            </td>
+            <td class="adminData">
+                @Html.DropDownListFor(model => model.DefaultPasswordFormat, Model.DefaultPasswordFormatValues)
+                @Html.ValidationMessageFor(model => model.DefaultPasswordFormat)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.PasswordMinLength):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.PasswordMinLength)
+                @Html.ValidationMessageFor(model => model.PasswordMinLength)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.StoreLastVisitedPage):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.StoreLastVisitedPage)
+                @Html.ValidationMessageFor(model => model.StoreLastVisitedPage)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.UsernameMaxLenght):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.UsernameMaxLenght)
+                @Html.ValidationMessageFor(model => model.UsernameMaxLenght)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.UsernameMinLength):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.UsernameMinLength)
+                @Html.ValidationMessageFor(model => model.UsernameMinLength)
+            </td>
+        </tr>
+    </table>
+}

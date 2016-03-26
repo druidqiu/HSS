@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{15B8D0E1-94DA-4986-BD3D-57EBC7C5C69F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HSS.Models</RootNamespace>
+    <AssemblyName>HSS.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActivityLog.cs">
+      <DependentUpon>HssModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ActivityLogType.cs">
+      <DependentUpon>HssModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseEntity.cs" />
+    <Compile Include="Brand.cs">
+      <DependentUpon>HssModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Category.cs">
+      <DependentUpon>HssModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CommonEnum\AttributeControlType.cs" />
+    <Compile Include="CommonEnum\CustomerGrade.cs" />
+    <Compile Include="CommonEnum\CustomerLoginResults.cs" />
+    <Compile Include="CommonEnum\LogLevel.cs" />
+    <Compile Include="CommonEnum\LogSource.cs" />
+    <Compile Include="CommonEnum\PageTitleSeoAdjustment.cs" />
+    <Compile Include="CommonEnum\PasswordFormat.cs" />
+    <Compile Include="CommonEnum\WwwRequirement.cs" />
+    <Compile Include="CommonResource\DefaultPermissionRecord.cs" />
+    <Compile Include="CommonResource\SystemCustomerRoleNames.cs" />
+    <Compile Include="Configuration\AdminAreaSettings.cs" />
+    <Compile Include="Configuration\CommonSettings.cs" />
+    <Compile Include="Configuration\CustomerSettings.cs" />
+    <Compile Include="Configuration\ISettings.cs" />
+    <Compile Include="Configuration\LocalizationSettings.cs" />
+    <Compile Include="Configuration\RewardPointsSettings.cs" />
+    <Compile Include="Configuration\SecuritySettings.cs" />
+    <Compile Include="Configuration\SeoSettings.cs" />
+    <Compile Include="Customer.cs">
+      <DependentUpon>HssModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerRole.cs">
+      <DependentUpon>HssModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\CustomerExtensions.cs" />
+    <Compile Include="FriendlyLink.cs">
+      <DependentUpon>HssModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GenericAttribute.cs">
+      <DependentUpon>HssModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HssModels.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HssModels.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HssModels.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HssModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HssModels.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HssModels.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Language.cs">
+      <DependentUpon>HssModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LocaleStringResource.cs">
+      <DependentUpon>HssModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Log.cs">
+      <DependentUpon>HssModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewsItem.cs">
+      <DependentUpon>HssModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PermissionRecord.cs">
+      <DependentUpon>HssModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Product.cs">
+      <DependentUpon>HssModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductAttribute.cs">
+      <DependentUpon>HssModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductAttributeMapping.cs">
+      <DependentUpon>HssModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductAttributeValue.cs">
+      <DependentUpon>HssModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs">
+      <DependentUpon>HssModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SystemNames\SystemCustomerAttributeNames.cs" />
+    <Compile Include="Topic.cs">
+      <DependentUpon>HssModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UrlRecord.cs">
+      <DependentUpon>HssModels.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <EntityDeploy Include="HssModels.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HssModels.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="HssModels.edmx.diagram">
+      <DependentUpon>HssModels.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="HssModels.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HssModels.edmx</DependentUpon>
+      <LastGenOutput>HssModels.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="HssModels.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HssModels.edmx</DependentUpon>
+      <LastGenOutput>HssModels.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

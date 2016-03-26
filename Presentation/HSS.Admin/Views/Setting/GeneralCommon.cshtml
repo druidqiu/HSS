@@ -1,0 +1,286 @@
+﻿@model GeneralCommonSettingsModel
+@{
+    //page title
+    ViewBag.Title = T("Admin.Configuration.Settings.GeneralCommon").Text;
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="section-header">
+        <div class="title">
+            <img src="@Url.Content("~/Administration/Content/images/ico-configuration.png")" alt="" />
+            @T("Admin.Configuration.Settings.GeneralCommon")
+        </div>
+        <div class="options">
+            <input type="submit" name="save" class="k-button" value="@T("Admin.Common.Save")" />
+        </div>
+    </div>
+    
+    @Html.ValidationSummary(false)
+    
+    <div id="generalsettings-edit">
+        <ul>
+            <li @Html.RenderSelectedTabIndex(0, GetSelectedTabIndex())>
+                @T("Admin.Configuration.Settings.GeneralCommon.SEOSettings")
+            </li>
+            <li @Html.RenderSelectedTabIndex(1, GetSelectedTabIndex())>
+                @T("Admin.Configuration.Settings.GeneralCommon.SecuritySettings")
+            </li>
+            <li @Html.RenderSelectedTabIndex(2, GetSelectedTabIndex())>
+                @T("Admin.Configuration.Settings.GeneralCommon.LocalizationSettings")
+            </li>
+            <li @Html.RenderSelectedTabIndex(3, GetSelectedTabIndex())>
+                @T("Admin.Configuration.Settings.GeneralCommon.FullTextSettings")
+            </li>
+        </ul>
+        <div>
+            @TabSEOSettings()
+        </div>
+        <div>
+            @TabSecuritySettings()
+        </div>
+        <div>
+            @TabLocalizationSettings()
+        </div>
+        <div>
+            @TabFullTextSettings()
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $("#generalsettings-edit").kendoTabStrip({
+                animation:  {
+                    open: {
+                        effects: "fadeIn"
+                    }
+                },
+                select: tabstrip_on_tab_select
+            });
+        });
+    </script>
+    
+    <input type="hidden" id="selected-tab-index" name="selected-tab-index" value="@(GetSelectedTabIndex())">
+
+}
+
+@helper TabSEOSettings()
+{
+    <table class="adminContent">
+        <tr>
+            <td class="adminTitle">                
+                @Html.NopLabelFor(model => model.SeoSettings.PageTitleSeparator):
+            </td>
+            <td class="adminData">                
+                @Html.EditorFor(model => model.SeoSettings.PageTitleSeparator)
+                @Html.ValidationMessageFor(model => model.SeoSettings.PageTitleSeparator)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">                
+                @Html.NopLabelFor(model => model.SeoSettings.PageTitleSeoAdjustment):
+            </td>
+            <td class="adminData">                
+                @Html.DropDownListFor(model => model.SeoSettings.PageTitleSeoAdjustment, Model.SeoSettings.PageTitleSeoAdjustmentValues)             
+                @Html.ValidationMessageFor(model => model.SeoSettings.PageTitleSeoAdjustment)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">                
+                @Html.NopLabelFor(model => model.SeoSettings.DefaultTitle):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.SeoSettings.DefaultTitle)
+                @Html.ValidationMessageFor(model => model.SeoSettings.DefaultTitle)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">                
+                @Html.NopLabelFor(model => model.SeoSettings.DefaultMetaKeywords):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.SeoSettings.DefaultMetaKeywords)
+                @Html.ValidationMessageFor(model => model.SeoSettings.DefaultMetaKeywords)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">                
+                @Html.NopLabelFor(model => model.SeoSettings.DefaultMetaDescription):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.SeoSettings.DefaultMetaDescription)
+                @Html.ValidationMessageFor(model => model.SeoSettings.DefaultMetaDescription)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">                
+                @Html.NopLabelFor(model => model.SeoSettings.ConvertNonWesternChars):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.SeoSettings.ConvertNonWesternChars)
+                @Html.ValidationMessageFor(model => model.SeoSettings.ConvertNonWesternChars)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">                
+                @Html.NopLabelFor(model => model.SeoSettings.CanonicalUrlsEnabled):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.SeoSettings.CanonicalUrlsEnabled)
+                @Html.ValidationMessageFor(model => model.SeoSettings.CanonicalUrlsEnabled)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.SeoSettings.WwwRequirement):
+            </td>
+            <td class="adminData">
+                @Html.DropDownListFor(model => model.SeoSettings.WwwRequirement, Model.SeoSettings.WwwRequirementValues)
+                @Html.ValidationMessageFor(model => model.SeoSettings.WwwRequirement)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.SeoSettings.EnableJsBundling):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.SeoSettings.EnableJsBundling)
+                @Html.ValidationMessageFor(model => model.SeoSettings.EnableJsBundling)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.SeoSettings.EnableCssBundling):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.SeoSettings.EnableCssBundling)
+                @Html.ValidationMessageFor(model => model.SeoSettings.EnableCssBundling)
+            </td>
+        </tr>
+    </table>
+}
+@helper TabSecuritySettings()
+{
+
+    <table class="adminContent">
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.SecuritySettings.EncryptionKey):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.SecuritySettings.EncryptionKey)
+                @Html.ValidationMessageFor(model => model.SecuritySettings.EncryptionKey)
+                <input type="submit" name="changeencryptionkey" value="@T("Admin.Common.Change")" id="changeencryptionkey" class="adminButton" onclick="return confirm('@T("Admin.Common.AreYouSure")');" />
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.SecuritySettings.AdminAreaAllowedIpAddresses):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.SecuritySettings.AdminAreaAllowedIpAddresses)
+                @Html.ValidationMessageFor(model => model.SecuritySettings.AdminAreaAllowedIpAddresses)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.SecuritySettings.ForceSslForAllPages):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.SecuritySettings.ForceSslForAllPages)
+                @Html.ValidationMessageFor(model => model.SecuritySettings.ForceSslForAllPages)
+            </td>
+        </tr>
+    </table>
+}
+@helper TabLocalizationSettings()
+{
+    <table class="adminContent">
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.LocalizationSettings.SeoFriendlyUrlsForLanguagesEnabled):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.LocalizationSettings.SeoFriendlyUrlsForLanguagesEnabled)
+                @Html.ValidationMessageFor(model => model.LocalizationSettings.SeoFriendlyUrlsForLanguagesEnabled)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.LocalizationSettings.AutomaticallyDetectLanguage):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.LocalizationSettings.AutomaticallyDetectLanguage)
+                @Html.ValidationMessageFor(model => model.LocalizationSettings.AutomaticallyDetectLanguage)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.LocalizationSettings.LoadAllLocaleRecordsOnStartup):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.LocalizationSettings.LoadAllLocaleRecordsOnStartup)
+                @Html.ValidationMessageFor(model => model.LocalizationSettings.LoadAllLocaleRecordsOnStartup)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.LocalizationSettings.LoadAllUrlRecordsOnStartup):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.LocalizationSettings.LoadAllUrlRecordsOnStartup)
+                @Html.ValidationMessageFor(model => model.LocalizationSettings.LoadAllUrlRecordsOnStartup)
+            </td>
+        </tr>
+    </table>
+}
+@helper TabFullTextSettings()
+{
+    <table class="adminContent">
+        <tr>
+            <td colspan="2">
+                @if (Model.FullTextSettings.Supported)
+                {
+                    @T("Admin.Configuration.Settings.GeneralCommon.FullTextSettings.Supported")
+                }
+                else
+                {
+                    @T("Admin.Configuration.Settings.GeneralCommon.FullTextSettings.NotSupported")
+                }
+            </td>
+        </tr>
+        @if (Model.FullTextSettings.Supported)
+        {
+            <tr>
+                <td colspan="2">
+                    @if (Model.FullTextSettings.Enabled)
+                    {
+                        @T("Admin.Configuration.Settings.GeneralCommon.FullTextSettings.CurrenlyEnabled")
+                    }
+                    else
+                    {
+                        @T("Admin.Configuration.Settings.GeneralCommon.FullTextSettings.CurrenlyDisabled")
+                    }
+                    <input type="submit" name="togglefulltext" value="@(Model.FullTextSettings.Enabled ? T("Admin.Configuration.Settings.GeneralCommon.FullTextSettings.Disable").Text : T("Admin.Configuration.Settings.GeneralCommon.FullTextSettings.Enable").Text)" class="adminButton" />
+                </td>
+            </tr>
+            if (Model.FullTextSettings.Enabled)
+            {
+                <td colspan="2">
+                    @T("Admin.Configuration.Settings.GeneralCommon.FullTextSettings.NoiseWords")
+                </td>
+            }
+            if (Model.FullTextSettings.Enabled)
+            {
+                <tr>
+                    <td class="adminTitle">
+                        @Html.NopLabelFor(model => model.FullTextSettings.SearchMode):
+                    </td>
+                    <td class="adminData">
+                        @Html.DropDownListFor(model => model.FullTextSettings.SearchMode, Model.FullTextSettings.SearchModeValues)
+                        @Html.ValidationMessageFor(model => model.FullTextSettings.SearchMode)
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+}

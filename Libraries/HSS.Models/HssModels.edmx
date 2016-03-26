@@ -1,0 +1,887 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="hssModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ActivityLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActivityLogTypeId" Type="int" Nullable="false" />
+          <Property Name="CustomerId" Type="int" />
+          <Property Name="Comment" Type="varchar" MaxLength="500" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ActivityLogType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SystemKeyword" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Brand">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="CatalogId" Type="int" Nullable="false" />
+          <Property Name="ParentCategoryId" Type="int" Nullable="false" />
+          <Property Name="MetaTitle" Type="varchar" MaxLength="200" />
+          <Property Name="MetaKeywords" Type="varchar" MaxLength="200" />
+          <Property Name="MetaDescription" Type="varchar" MaxLength="200" />
+          <Property Name="Audit" Type="bit" Nullable="false" />
+          <Property Name="DisplayOrder" Type="int" Nullable="false" />
+          <Property Name="CreateOn" Type="datetime" Nullable="false" />
+          <Property Name="Description" Type="text" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="DisplayOrder" Type="int" Nullable="false" />
+          <Property Name="ShowInHome" Type="bit" Nullable="false" />
+          <Property Name="MetaTitle" Type="varchar" MaxLength="200" />
+          <Property Name="MetaKeywords" Type="varchar" MaxLength="200" />
+          <Property Name="MetaDescription" Type="varchar" MaxLength="300" />
+          <Property Name="ParentCategoryId" Type="int" Nullable="false" />
+          <Property Name="Published" Type="bit" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerGuid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="LoginName" Type="varchar" MaxLength="150" />
+          <Property Name="Password" Type="varchar" MaxLength="128" />
+          <Property Name="LevelId" Type="int" Nullable="false" />
+          <Property Name="PasswordSalt" Type="varchar" MaxLength="50" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="CreateOn" Type="datetime" Nullable="false" />
+          <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
+          <Property Name="LastIpAddress" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CustomerRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="IsSystemRole" Type="bit" Nullable="false" />
+          <Property Name="SystemName" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FriendlyLink">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SystemName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ShowImage" Type="bit" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Link" Type="varchar" MaxLength="500" />
+          <Property Name="Linkref" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="target" Type="bit" Nullable="false" />
+          <Property Name="ImageURL" Type="varchar" MaxLength="500" />
+          <Property Name="DisplayOrder" Type="int" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GenericAttribute">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EntityId" Type="int" Nullable="false" />
+          <Property Name="KeyGroup" Type="nvarchar" MaxLength="400" Nullable="false" />
+          <Property Name="Key" Type="nvarchar" MaxLength="400" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LanguageCulture" Type="varchar" MaxLength="20" />
+          <Property Name="UniqueSeoCode" Type="nvarchar" MaxLength="2" />
+          <Property Name="Published" Type="bit" Nullable="false" />
+          <Property Name="DisplayOrder" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LocaleStringResource">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LanguageId" Type="int" Nullable="false" />
+          <Property Name="ResourceName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="ResourceValue" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Source" Type="int" Nullable="false" />
+          <Property Name="LogLevelId" Type="int" Nullable="false" />
+          <Property Name="ShortMessage" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FullMessage" Type="nvarchar(max)" />
+          <Property Name="IpAddress" Type="nvarchar" MaxLength="200" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="PageUrl" Type="nvarchar(max)" />
+          <Property Name="ReferrerUrl" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NewsItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Short" Type="varchar" MaxLength="300" />
+          <Property Name="FullText" Type="text" />
+          <Property Name="Published" Type="bit" Nullable="false" />
+          <Property Name="AllowComments" Type="bit" Nullable="false" />
+          <Property Name="CommentCount" Type="int" Nullable="false" />
+          <Property Name="MetaTitle" Type="varchar" MaxLength="200" />
+          <Property Name="MetaKeywords" Type="varchar" MaxLength="200" />
+          <Property Name="MetaDescription" Type="varchar" MaxLength="200" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PermissionRecord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="SystemName" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Category" Type="varchar" MaxLength="150" />
+          <Property Name="PermissionCode" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="CatalogId" Type="int" Nullable="false" />
+          <Property Name="ParentCategoryId" Type="int" Nullable="false" />
+          <Property Name="BrandId" Type="int" Nullable="false" />
+          <Property Name="MetaTitle" Type="varchar" MaxLength="200" />
+          <Property Name="MetaKeywords" Type="varchar" MaxLength="200" />
+          <Property Name="MetaDescription" Type="varchar" MaxLength="200" />
+          <Property Name="Published" Type="bit" Nullable="false" />
+          <Property Name="FullDescription" Type="text" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductAttribute">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Audit" Type="bit" Nullable="false" />
+          <Property Name="DisplayOrder" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="ProductAttributeMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="ProductAttributeId" Type="int" Nullable="false" />
+          <Property Name="IsRequired" Type="bit" Nullable="false" />
+          <Property Name="AttributeControlTypeId" Type="int" Nullable="false" />
+          <Property Name="DisplayOrder" Type="int" Nullable="false" />
+          <Property Name="DefaultValue" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ProductAttributeValue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductAttributeMappingId" Type="int" Nullable="false" />
+          <Property Name="AttributeValueTypeId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" />
+          <Property Name="IsPreSelected" Type="bit" Nullable="false" />
+          <Property Name="DisplayOrder" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Settings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="350" Nullable="false" />
+          <Property Name="Value" Type="varchar" MaxLength="350" />
+        </EntityType>
+        <EntityType Name="Topic">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SystemName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IncludeInSitemap" Type="bit" Nullable="false" />
+          <Property Name="DisplayOrder" Type="int" Nullable="false" />
+          <Property Name="IsSystem" Type="bit" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="200" />
+          <Property Name="Body" Type="text" />
+          <Property Name="MetaKeywords" Type="varchar" MaxLength="200" />
+          <Property Name="MetaDescription" Type="varchar" MaxLength="30" />
+          <Property Name="MetaTitle" Type="varchar" MaxLength="150" />
+          <Property Name="CreateOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UrlRecord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EntityId" Type="int" Nullable="false" />
+          <Property Name="EntityName" Type="varchar" MaxLength="150" />
+          <Property Name="Slug" Type="varchar" MaxLength="350" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="LanguageId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_LocaleStringResource_dbo_Language_LanguageId">
+          <End Role="Language" Type="Self.Language" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LocaleStringResource" Type="Self.LocaleStringResource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LocaleStringResource">
+              <PropertyRef Name="LanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="hssModelStoreContainer">
+          <EntitySet Name="ActivityLog" EntityType="Self.ActivityLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActivityLogType" EntityType="Self.ActivityLogType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomerRole" EntityType="Self.CustomerRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FriendlyLink" EntityType="Self.FriendlyLink" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GenericAttribute" EntityType="Self.GenericAttribute" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LocaleStringResource" EntityType="Self.LocaleStringResource" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NewsItem" EntityType="Self.NewsItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PermissionRecord" EntityType="Self.PermissionRecord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductAttribute" EntityType="Self.ProductAttribute" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductAttributeMapping" EntityType="Self.ProductAttributeMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductAttributeValue" EntityType="Self.ProductAttributeValue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Settings" EntityType="Self.Settings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Topic" EntityType="Self.Topic" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UrlRecord" EntityType="Self.UrlRecord" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_LocaleStringResource_dbo_Language_LanguageId" Association="Self.FK_dbo_LocaleStringResource_dbo_Language_LanguageId">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="LocaleStringResource" EntitySet="LocaleStringResource" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="hssModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="hssEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ActivityLog" EntityType="hssModel.ActivityLog" />
+          <EntitySet Name="Brand" EntityType="hssModel.Brand" />
+          <EntitySet Name="Category" EntityType="hssModel.Category" />
+          <EntitySet Name="Customer" EntityType="hssModel.Customer" />
+          <EntitySet Name="CustomerRole" EntityType="hssModel.CustomerRole" />
+          <EntitySet Name="GenericAttribute" EntityType="hssModel.GenericAttribute" />
+          <EntitySet Name="Language" EntityType="hssModel.Language" />
+          <EntitySet Name="LocaleStringResource" EntityType="hssModel.LocaleStringResource" />
+          <EntitySet Name="Log" EntityType="hssModel.Log" />
+          <EntitySet Name="NewsItem" EntityType="hssModel.NewsItem" />
+          <EntitySet Name="PermissionRecord" EntityType="hssModel.PermissionRecord" />
+          <EntitySet Name="Product" EntityType="hssModel.Product" />
+          <EntitySet Name="ProductAttribute" EntityType="hssModel.ProductAttribute" />
+          <EntitySet Name="ProductAttributeMapping" EntityType="hssModel.ProductAttributeMapping" />
+          <EntitySet Name="ProductAttributeValue" EntityType="hssModel.ProductAttributeValue" />
+          <EntitySet Name="Settings" EntityType="hssModel.Settings" />
+          <EntitySet Name="Topic" EntityType="hssModel.Topic" />
+          <EntitySet Name="UrlRecord" EntityType="hssModel.UrlRecord" />
+          <AssociationSet Name="FK_dbo_LocaleStringResource_dbo_Language_LanguageId" Association="hssModel.FK_dbo_LocaleStringResource_dbo_Language_LanguageId">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="LocaleStringResource" EntitySet="LocaleStringResource" />
+          </AssociationSet>
+          <EntitySet Name="FriendlyLink" EntityType="hssModel.FriendlyLink" />
+          <EntitySet Name="ActivityLogType" EntityType="hssModel.ActivityLogType" />
+        </EntityContainer>
+        <EntityType Name="ActivityLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActivityLogTypeId" Type="Int32" Nullable="false" />
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="Comment" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Brand">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="CatalogId" Type="Int32" Nullable="false" />
+          <Property Name="ParentCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="MetaTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="MetaKeywords" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="MetaDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Audit" Type="Boolean" Nullable="false" />
+          <Property Name="DisplayOrder" Type="Int32" Nullable="false" />
+          <Property Name="CreateOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="DisplayOrder" Type="Int32" Nullable="false" />
+          <Property Name="ShowInHome" Type="Boolean" Nullable="false" />
+          <Property Name="MetaTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="MetaKeywords" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="MetaDescription" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="ParentCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="Published" Type="Boolean" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerGuid" Type="Guid" Nullable="false" />
+          <Property Name="LoginName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="LevelId" Type="Int32" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreateOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastActivityDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastIpAddress" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordSalt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CustomerRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="IsSystemRole" Type="Boolean" Nullable="false" />
+          <Property Name="SystemName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="GenericAttribute">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EntityId" Type="Int32" Nullable="false" />
+          <Property Name="KeyGroup" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="Key" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LanguageCulture" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UniqueSeoCode" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="Published" Type="Boolean" Nullable="false" />
+          <Property Name="DisplayOrder" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="LocaleStringResource" Relationship="hssModel.FK_dbo_LocaleStringResource_dbo_Language_LanguageId" FromRole="Language" ToRole="LocaleStringResource" />
+        </EntityType>
+        <EntityType Name="LocaleStringResource">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LanguageId" Type="Int32" Nullable="false" />
+          <Property Name="ResourceName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ResourceValue" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Language" Relationship="hssModel.FK_dbo_LocaleStringResource_dbo_Language_LanguageId" FromRole="LocaleStringResource" ToRole="Language" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Source" Type="Int32" Nullable="false" />
+          <Property Name="LogLevelId" Type="Int32" Nullable="false" />
+          <Property Name="ShortMessage" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FullMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IpAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="PageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ReferrerUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="NewsItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Short" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="FullText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Published" Type="Boolean" Nullable="false" />
+          <Property Name="AllowComments" Type="Boolean" Nullable="false" />
+          <Property Name="CommentCount" Type="Int32" Nullable="false" />
+          <Property Name="MetaTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="MetaKeywords" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="MetaDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="PermissionRecord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="SystemName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Category" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="PermissionCode" Type="Guid" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="CatalogId" Type="Int32" Nullable="false" />
+          <Property Name="ParentCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="BrandId" Type="Int32" Nullable="false" />
+          <Property Name="MetaTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="MetaKeywords" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="MetaDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Published" Type="Boolean" Nullable="false" />
+          <Property Name="FullDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ProductAttribute">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Audit" Type="Boolean" Nullable="false" />
+          <Property Name="DisplayOrder" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ProductAttributeMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="ProductAttributeId" Type="Int32" Nullable="false" />
+          <Property Name="IsRequired" Type="Boolean" Nullable="false" />
+          <Property Name="AttributeControlTypeId" Type="Int32" Nullable="false" />
+          <Property Name="DisplayOrder" Type="Int32" Nullable="false" />
+          <Property Name="DefaultValue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ProductAttributeValue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductAttributeMappingId" Type="Int32" Nullable="false" />
+          <Property Name="AttributeValueTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="IsPreSelected" Type="Boolean" Nullable="false" />
+          <Property Name="DisplayOrder" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Settings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="350" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Topic">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SystemName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IncludeInSitemap" Type="Boolean" Nullable="false" />
+          <Property Name="DisplayOrder" Type="Int32" Nullable="false" />
+          <Property Name="IsSystem" Type="Boolean" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="MetaKeywords" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="MetaDescription" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="MetaTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="CreateOn" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="UrlRecord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EntityId" Type="Int32" Nullable="false" />
+          <Property Name="EntityName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Slug" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="LanguageId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_LocaleStringResource_dbo_Language_LanguageId">
+          <End Type="hssModel.Language" Role="Language" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="hssModel.LocaleStringResource" Role="LocaleStringResource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LocaleStringResource">
+              <PropertyRef Name="LanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="FriendlyLink">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SystemName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShowImage" Type="Boolean" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Link" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="target" Type="Boolean" Nullable="false" />
+          <Property Name="ImageURL" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Linkref" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DisplayOrder" Type="Int32" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ActivityLogType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SystemKeyword" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="hssModelStoreContainer" CdmEntityContainer="hssEntities">
+          <EntitySetMapping Name="ActivityLog">
+            <EntityTypeMapping TypeName="hssModel.ActivityLog">
+              <MappingFragment StoreEntitySet="ActivityLog">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="ActivityLogTypeId" ColumnName="ActivityLogTypeId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Brand">
+            <EntityTypeMapping TypeName="hssModel.Brand">
+              <MappingFragment StoreEntitySet="Brand">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreateOn" ColumnName="CreateOn" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="Audit" ColumnName="Audit" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
+                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+                <ScalarProperty Name="ParentCategoryId" ColumnName="ParentCategoryId" />
+                <ScalarProperty Name="CatalogId" ColumnName="CatalogId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="hssModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Published" ColumnName="Published" />
+                <ScalarProperty Name="ParentCategoryId" ColumnName="ParentCategoryId" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
+                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+                <ScalarProperty Name="ShowInHome" ColumnName="ShowInHome" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customer">
+            <EntityTypeMapping TypeName="hssModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="LastIpAddress" ColumnName="LastIpAddress" />
+                <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
+                <ScalarProperty Name="CreateOn" ColumnName="CreateOn" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="LevelId" ColumnName="LevelId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="CustomerGuid" ColumnName="CustomerGuid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerRole">
+            <EntityTypeMapping TypeName="hssModel.CustomerRole">
+              <MappingFragment StoreEntitySet="CustomerRole">
+                <ScalarProperty Name="SystemName" ColumnName="SystemName" />
+                <ScalarProperty Name="IsSystemRole" ColumnName="IsSystemRole" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GenericAttribute">
+            <EntityTypeMapping TypeName="hssModel.GenericAttribute">
+              <MappingFragment StoreEntitySet="GenericAttribute">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="KeyGroup" ColumnName="KeyGroup" />
+                <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Language">
+            <EntityTypeMapping TypeName="hssModel.Language">
+              <MappingFragment StoreEntitySet="Language">
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="Published" ColumnName="Published" />
+                <ScalarProperty Name="UniqueSeoCode" ColumnName="UniqueSeoCode" />
+                <ScalarProperty Name="LanguageCulture" ColumnName="LanguageCulture" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LocaleStringResource">
+            <EntityTypeMapping TypeName="hssModel.LocaleStringResource">
+              <MappingFragment StoreEntitySet="LocaleStringResource">
+                <ScalarProperty Name="ResourceValue" ColumnName="ResourceValue" />
+                <ScalarProperty Name="ResourceName" ColumnName="ResourceName" />
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Log">
+            <EntityTypeMapping TypeName="hssModel.Log">
+              <MappingFragment StoreEntitySet="Log">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ReferrerUrl" ColumnName="ReferrerUrl" />
+                <ScalarProperty Name="PageUrl" ColumnName="PageUrl" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="IpAddress" ColumnName="IpAddress" />
+                <ScalarProperty Name="FullMessage" ColumnName="FullMessage" />
+                <ScalarProperty Name="ShortMessage" ColumnName="ShortMessage" />
+                <ScalarProperty Name="LogLevelId" ColumnName="LogLevelId" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewsItem">
+            <EntityTypeMapping TypeName="hssModel.NewsItem">
+              <MappingFragment StoreEntitySet="NewsItem">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
+                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+                <ScalarProperty Name="CommentCount" ColumnName="CommentCount" />
+                <ScalarProperty Name="AllowComments" ColumnName="AllowComments" />
+                <ScalarProperty Name="Published" ColumnName="Published" />
+                <ScalarProperty Name="FullText" ColumnName="FullText" />
+                <ScalarProperty Name="Short" ColumnName="Short" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PermissionRecord">
+            <EntityTypeMapping TypeName="hssModel.PermissionRecord">
+              <MappingFragment StoreEntitySet="PermissionRecord">
+                <ScalarProperty Name="PermissionCode" ColumnName="PermissionCode" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="SystemName" ColumnName="SystemName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="hssModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="FullDescription" ColumnName="FullDescription" />
+                <ScalarProperty Name="Published" ColumnName="Published" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
+                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
+                <ScalarProperty Name="ParentCategoryId" ColumnName="ParentCategoryId" />
+                <ScalarProperty Name="CatalogId" ColumnName="CatalogId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductAttribute">
+            <EntityTypeMapping TypeName="hssModel.ProductAttribute">
+              <MappingFragment StoreEntitySet="ProductAttribute">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="Audit" ColumnName="Audit" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductAttributeMapping">
+            <EntityTypeMapping TypeName="hssModel.ProductAttributeMapping">
+              <MappingFragment StoreEntitySet="ProductAttributeMapping">
+                <ScalarProperty Name="DefaultValue" ColumnName="DefaultValue" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="AttributeControlTypeId" ColumnName="AttributeControlTypeId" />
+                <ScalarProperty Name="IsRequired" ColumnName="IsRequired" />
+                <ScalarProperty Name="ProductAttributeId" ColumnName="ProductAttributeId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductAttributeValue">
+            <EntityTypeMapping TypeName="hssModel.ProductAttributeValue">
+              <MappingFragment StoreEntitySet="ProductAttributeValue">
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="IsPreSelected" ColumnName="IsPreSelected" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AttributeValueTypeId" ColumnName="AttributeValueTypeId" />
+                <ScalarProperty Name="ProductAttributeMappingId" ColumnName="ProductAttributeMappingId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Settings">
+            <EntityTypeMapping TypeName="hssModel.Settings">
+              <MappingFragment StoreEntitySet="Settings">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Topic">
+            <EntityTypeMapping TypeName="hssModel.Topic">
+              <MappingFragment StoreEntitySet="Topic">
+                <ScalarProperty Name="CreateOn" ColumnName="CreateOn" />
+                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="IsSystem" ColumnName="IsSystem" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="IncludeInSitemap" ColumnName="IncludeInSitemap" />
+                <ScalarProperty Name="SystemName" ColumnName="SystemName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UrlRecord">
+            <EntityTypeMapping TypeName="hssModel.UrlRecord">
+              <MappingFragment StoreEntitySet="UrlRecord">
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Slug" ColumnName="Slug" />
+                <ScalarProperty Name="EntityName" ColumnName="EntityName" />
+                <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FriendlyLink">
+            <EntityTypeMapping TypeName="hssModel.FriendlyLink">
+              <MappingFragment StoreEntitySet="FriendlyLink">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="Linkref" ColumnName="Linkref" />
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+                <ScalarProperty Name="target" ColumnName="target" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ShowImage" ColumnName="ShowImage" />
+                <ScalarProperty Name="SystemName" ColumnName="SystemName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActivityLogType">
+            <EntityTypeMapping TypeName="hssModel.ActivityLogType">
+              <MappingFragment StoreEntitySet="ActivityLogType">
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SystemKeyword" ColumnName="SystemKeyword" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

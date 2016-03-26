@@ -1,0 +1,102 @@
+﻿@{
+    ViewBag.Title = "List";
+
+    var defaultGridPageSize = EngineContext.Current.Resolve<HSS.Models.Configuration.AdminAreaSettings>().DefaultGridPageSize;
+    var gridPageSizes = EngineContext.Current.Resolve<HSS.Models.Configuration.AdminAreaSettings>().GridPageSizes;
+}
+
+
+<table class="adminContent">
+    <tr>
+        <td>
+            <div id="log-grid"></div>
+
+            <script>
+                $(document).ready(function () {
+                    $("#log-grid").kendoGrid({
+                        dataSource: {
+                            type: "json",
+                            transport: {
+                                read: {
+                                    url: "@Html.Raw(Url.Action("List", "Log"))",
+                                    type: "POST",
+                                    dataType: "json",
+                                    data: additionalData
+                                }
+                            },
+                            schema: {
+                                data: "Data",
+                                total: "Total",
+                                errors: "Errors"
+                            },
+                            error: function (e) {
+                                display_kendoui_grid_error(e);
+                                // 取消更改
+                                this.cancelChanges();
+                            },
+                                pageSize: @(defaultGridPageSize),
+                            serverPaging: true,
+                            serverFiltering: true,
+                            serverSorting: true
+                        },
+                        pageable: {
+                            refresh: true,
+                            pageSizes: [@(gridPageSizes)]
+                        },
+                        editable: {
+                            confirmation: false,
+                            mode: "inline"
+                        },
+                        scrollable: true,
+                        columns: [{
+                            field: "Id",
+                            title: "@T("Admin.Configuration.Languages.Fields.Id")",
+                            width: 100,
+                        }, {
+                            field: "LogLevel",
+                            title: "@T("Admin.Configuration.Languages.Fields.LogLevel")",
+                            width: 100,
+                        },{
+                            field: "Source",
+                            title: "@T("Admin.Configuration.Languages.Fields.Source")",
+                            width: 100,
+                        }, {
+                            field: "DateString",
+                            title: "@T("Admin.Configuration.Languages.Fields.DateString")",
+                            width: 100,
+                        }, {
+                            field: "Id",
+                            title: "@T("Admin.Common.Edit")",
+                            width: 100,
+                            template: '<a href="Edit/#=Id#">@T("Admin.Common.Edit")</a>'
+                        }]
+                    });
+                });
+            </script>
+           <script type="text/javascript">
+                function additionalData() {
+                    var data = {
+                        @*Keywords: $('#@Html.FieldIdFor(model => model.Keywords)').val(),*@
+                    };
+                    addAntiForgeryToken(data);
+                    return data;
+                }
+            </script>
+@*
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#search-button').click(function () {
+                //search
+                var grid = $('#link-grid').data('kendoGrid');
+                grid.dataSource.page(1);
+
+                $('.checkboxGroups').attr('checked', false).change();
+                return false;
+            });
+        });
+
+    </script>*@
+        </td>
+    </tr>
+</table>

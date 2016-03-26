@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{25F23C60-A5D0-405F-B5CC-D2F8053E58DE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HSS.Web.Framework</RootNamespace>
+    <AssemblyName>HSS.Web.Framework</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <WebGreaseLibPath>..\..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc, Version=3.3.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Autofac.Mvc5.3.3.4\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentValidation, Version=5.6.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FluentValidation.5.6.2.0\lib\Net45\FluentValidation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.1.0\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.1.0\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Razor.3.1.0\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.1.0\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.1.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.1.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ValidatorFactory.cs" />
+    <Compile Include="Controller\BaseController.cs" />
+    <Compile Include="Controller\ParameterBasedOnFormNameAndValueAttribute.cs" />
+    <Compile Include="Controller\ParameterBasedOnFormNameAttribute.cs" />
+    <Compile Include="CustomerLastActivityAttribute.cs" />
+    <Compile Include="DependencyRegistrar.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Grid\DataSourceRequest.cs" />
+    <Compile Include="Grid\DataSourceResult.cs" />
+    <Compile Include="Grid\Dynamic.cs" />
+    <Compile Include="Grid\Filter.cs" />
+    <Compile Include="Grid\ModelStateExtensions.cs" />
+    <Compile Include="Grid\QueryableExtensions.cs" />
+    <Compile Include="Grid\Sort.cs" />
+    <Compile Include="HtmlExtensions.cs" />
+    <Compile Include="Localization\ILocalizedModel.cs" />
+    <Compile Include="Localization\ILocalizedModelLocal.cs" />
+    <Compile Include="Localization\LocalizedRoute.cs" />
+    <Compile Include="Localization\LocalizedRouteExtensions.cs" />
+    <Compile Include="Localization\LocalizedString.cs" />
+    <Compile Include="Localization\LocalizedUrlExtenstions.cs" />
+    <Compile Include="Localization\Localizer.cs" />
+    <Compile Include="Mvc\BaseModel.cs" />
+    <Compile Include="Mvc\CommaSeparatedModelBinder.cs" />
+    <Compile Include="Mvc\CommonCacheNames.cs" />
+    <Compile Include="Mvc\DeleteConfirmationModel.cs" />
+    <Compile Include="Mvc\IModelAttribute.cs" />
+    <Compile Include="Mvc\ModelBinder.cs" />
+    <Compile Include="Mvc\MetadataProvider.cs" />
+    <Compile Include="Mvc\NullJsonResult.cs" />
+    <Compile Include="Mvc\Routes\GuidConstraint.cs" />
+    <Compile Include="Mvc\Routes\IRouteProvider.cs" />
+    <Compile Include="Mvc\Routes\IRoutePublisher.cs" />
+    <Compile Include="Mvc\Routes\RoutePublisher.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResourceDisplayName.cs" />
+    <Compile Include="Security\AdminValidateIpAddressAttribute.cs" />
+    <Compile Include="Security\HttpsRequirementAttribute.cs" />
+    <Compile Include="Security\PublicAntiForgeryAttribute.cs" />
+    <Compile Include="Security\SslRequirement.cs" />
+    <Compile Include="Seo\GenericPathRoute.cs" />
+    <Compile Include="Seo\GenericPathRouteExtensions.cs" />
+    <Compile Include="Seo\WwwRequirementAttribute.cs" />
+    <Compile Include="StoreIpAddressAttribute.cs" />
+    <Compile Include="StoreLastVisitedPageAttribute.cs" />
+    <Compile Include="UI\AsIsBundleOrderer.cs" />
+    <Compile Include="UI\DataListExtensions.cs" />
+    <Compile Include="UI\IPageHeadBuilder.cs" />
+    <Compile Include="UI\LayoutExtensions.cs" />
+    <Compile Include="UI\PageHeadBuilder.cs" />
+    <Compile Include="UI\Paging\BasePageableModel.cs" />
+    <Compile Include="UI\Paging\IPageableModel.cs" />
+    <Compile Include="UI\Paging\Pager.cs" />
+    <Compile Include="UI\ResourceLocation.cs" />
+    <Compile Include="Validators\BaseValidator.cs" />
+    <Compile Include="ViewEngines\Razor\WebViewPage.cs" />
+    <Compile Include="WebStoreContext.cs" />
+    <Compile Include="WebWorkContext.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Libraries\HSS.Core\HSS.Core.csproj">
+      <Project>{bd9190cd-7ec8-4a0e-80e9-79ece55f7e0d}</Project>
+      <Name>HSS.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\HSS.Data\HSS.Data.csproj">
+      <Project>{52b13d84-50df-448b-9a6a-b6ad4714a90c}</Project>
+      <Name>HSS.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\HSS.Models\HSS.Models.csproj">
+      <Project>{15b8d0e1-94da-4986-bd3d-57ebc7c5c69f}</Project>
+      <Name>HSS.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\HSS.Services\HSS.Services.csproj">
+      <Project>{b6915edb-316d-46da-84d5-9e6ae534626e}</Project>
+      <Name>HSS.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

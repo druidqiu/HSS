@@ -1,0 +1,87 @@
+﻿@{
+    //page title
+    ViewBag.Title = T("Admin.Configuration.Topic").Text;
+}
+@Html.AntiForgeryToken()
+<div class="section-header">
+    <div class="title">
+        <img src="@Url.Content("~/Content/images/ico-configuration.png")" alt="" />
+        @T("Admin.Configuration.Topic")
+    </div>
+    <div class="options">
+        <a href="@Url.Action("Create")" class="k-button">@T("Admin.Common.AddNew")</a>
+    </div>
+</div>
+<table class="adminContent">
+    <tr>
+        <td>
+            <div id="topics-grid"></div>
+
+            <script>
+                $(document).ready(function () {
+                    $("#topics-grid").kendoGrid({
+                        dataSource: {
+                            type: "json",
+                            transport: {
+                                read: {
+                                    url: "@Html.Raw(Url.Action("List", "Topic"))",
+                                    type: "POST",
+                                    dataType: "json",
+                                    data: addAntiForgeryToken
+                                }
+                            },
+                            schema: {
+                                data: "Data",
+                                total: "Total",
+                                errors: "Errors"
+                            },
+                            error: function(e) {
+                                display_kendoui_grid_error(e);
+                                // Cancel the changes
+                                this.cancelChanges();
+                            },
+                            serverPaging: true,
+                            serverFiltering: true,
+                            serverSorting: true
+                        },
+                        pageable: {
+                            refresh: true,
+                            numeric: false,
+                            previousNext: false,
+                            info: false
+                        },
+                        editable: {
+                            confirmation: false,
+                            mode: "inline"
+                        },
+                        scrollable: true,
+                        sortable: true,
+                        columns: [{
+                            field: "Id",
+                            title: "@T("Admin.Configuration.Topic.Fields.Id")",
+                            width: 100,
+                        }, {
+                            field: "Title",
+                            title: "@T("Admin.Configuration.Topic.Fields.Title")"
+                        }, {
+                            field: "SystemName",
+                            title: "@T("Admin.Configuration.Topic.Fields.SystemName")"
+                        },{
+                            field: "IsSystem",
+                            title: "@T("Admin.Configuration.Languages.Fields.IsSystem")",
+                            width: 100,
+                            headerAttributes: { style: "text-align:center" },
+                            attributes: { style: "text-align:center" },
+                            template: '<img src="@Url.Content("~/Content/images/")active-#=IsSystem#.gif" />'
+                        },{
+                            field: "Id",
+                            title: "@T("Admin.Common.Edit")",
+                            width: 100,
+                            template: '<a href="Edit/#=Id#">@T("Admin.Common.Edit")</a>'
+                        }]
+                });
+                });
+            </script>
+        </td>
+    </tr>
+</table>

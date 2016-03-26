@@ -1,0 +1,58 @@
+﻿@model RegisterModel
+@using HSS.Web.Models.Customer;
+@{
+    Layout = "~/Views/Shared/_Single.cshtml";
+    Html.AddCssFileParts("~/Content/form.css");
+}
+
+
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="page-body">
+            @{
+                var validationSummary = Html.ValidationSummary(true);
+            }
+            @if (!MvcHtmlString.IsNullOrEmpty(validationSummary))
+                {
+                <div class="message-error">@validationSummary</div>
+            }
+
+            <div class="inputs">
+                @Html.NopLabelFor(model => model.LoginName) :
+                @Html.EditorFor(model => model.LoginName)
+                @Html.RequiredHint()
+                @Html.ValidationMessageFor(model => model.LoginName)
+            </div>
+
+            <div class="inputs">
+                @Html.NopLabelFor(model => model.Password) :
+                @Html.EditorFor(model => model.Password)
+                @Html.RequiredHint()
+                @Html.ValidationMessageFor(model => model.Password)
+            </div>
+            <div class="inputs">
+                @Html.NopLabelFor(model => model.ConfirmPassword) :
+                @Html.EditorFor(model => model.ConfirmPassword)
+                @Html.RequiredHint()
+                @Html.ValidationMessageFor(model => model.ConfirmPassword)
+
+            </div>
+            <div class="inputs">
+                @Html.NopLabelFor(model => model.Mobile) :
+                @Html.EditorFor(model => model.Mobile)
+                @Html.RequiredHint()
+                @Html.ValidationMessageFor(model => model.Mobile)
+            </div>
+            <div class="inputs">
+                @Html.NopLabelFor(model => model.Email) :
+                @Html.EditorFor(model => model.Email)
+                @Html.RequiredHint()
+                @Html.ValidationMessageFor(model => model.Email)
+            </div><div class="buttons">
+                <input type="submit" id="register-button" class="button-1 register-next-step-button" value="@T("Account.Register.Button")" name="register-button" />
+            </div>
+        </div>
+                }
+</div>

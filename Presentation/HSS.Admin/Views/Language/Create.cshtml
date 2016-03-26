@@ -1,0 +1,12 @@
+﻿@model LanguageModel
+@{
+    ViewBag.Title = T("Admin.Language.Create").Text;
+    Layout = "~/Administration/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.Partial("_CreateOrUpdate", Model)
+}

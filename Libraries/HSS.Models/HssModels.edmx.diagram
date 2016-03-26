@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="731e0471ae6340bdbbbea6eacfb02170" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="hssModel.ActivityLog" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="hssModel.Brand" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="hssModel.Category" Width="1.5" PointX="4.75" PointY="4.75" />
+        <EntityTypeShape EntityType="hssModel.Customer" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="hssModel.CustomerRole" Width="1.5" PointX="6.75" PointY="4.75" />
+        <EntityTypeShape EntityType="hssModel.GenericAttribute" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="hssModel.Language" Width="1.5" PointX="0.75" PointY="1" />
+        <EntityTypeShape EntityType="hssModel.LocaleStringResource" Width="1.5" PointX="3" PointY="1.125" />
+        <EntityTypeShape EntityType="hssModel.Log" Width="1.5" PointX="6.75" PointY="7.75" />
+        <EntityTypeShape EntityType="hssModel.NewsItem" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="hssModel.PermissionRecord" Width="1.5" PointX="2.75" PointY="8.75" />
+        <EntityTypeShape EntityType="hssModel.Product" Width="1.5" PointX="8.75" PointY="3.75" />
+        <EntityTypeShape EntityType="hssModel.ProductAttribute" Width="1.5" PointX="8.75" PointY="7.75" />
+        <EntityTypeShape EntityType="hssModel.ProductAttributeMapping" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="hssModel.ProductAttributeValue" Width="1.5" PointX="10.75" PointY="4.75" />
+        <EntityTypeShape EntityType="hssModel.Settings" Width="1.5" PointX="10.75" PointY="7.75" />
+        <EntityTypeShape EntityType="hssModel.Topic" Width="1.5" PointX="8.75" PointY="10.75" />
+        <EntityTypeShape EntityType="hssModel.UrlRecord" Width="1.5" PointX="10.75" PointY="10.75" />
+        <AssociationConnector Association="hssModel.FK_dbo_LocaleStringResource_dbo_Language_LanguageId" />
+        <EntityTypeShape EntityType="hssModel.FriendlyLink" Width="1.5" PointX="3.375" PointY="11.75" />
+        <EntityTypeShape EntityType="hssModel.ActivityLogType" Width="1.5" PointX="5.375" PointY="11.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
